@@ -1,6 +1,11 @@
+import { useState } from 'react';
 import './ProductCard.css'
 
 function ProductCard({title, price, description, imageUrl= 'https://picsum.photos/600/400'}) {
+
+  const [isAdded, setIsAdded] = useState('false')
+  console.log('isAdded', isAdded)
+
   return (
     /* Create Product Card HTML */
     <div id="card-01" className="card">
@@ -16,8 +21,10 @@ function ProductCard({title, price, description, imageUrl= 'https://picsum.photo
         </p>
         <div className="card-footer">
           <span className="card-price">${price}</span>
-          <button className="card-button">
-            Agregar al Carrito
+          <button className={`card-button ${isAdded ? 'added' : ''}`}
+            onClick={() => setIsAdded('isAdded' === 'true' ? 'false' : 'true')} /* !isAdded */
+          >
+            {isAdded === 'true' ? 'Agregado' : 'Agregar'}
           </button>
         </div>
       </div>
