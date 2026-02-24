@@ -1,43 +1,29 @@
-import { useEffect, useState } from 'react'
 import './App.css'
 import ProductCard from './components/ProductCard'
 
 function App() {
-  const [products, setProducts] = useState([])
-
-  useEffect(() => {
-    fetch('https://api.escuelajs.co/api/v1/products')
-      .then(res => res.json())
-      .then(data => {
-        setProducts(data)
-      })
-  }, [])
-
   return (
     <>
-      {products.map(product => (
-        <ProductCard
-          key={product.id} // importante para evitar warnings en React
-          title={product.title}
-          price={product.price}
-          description={product.description}
-          imageUrl={product.images?.[0]} // la API devuelve un array de imágenes
-        />
-      ))}
-
       <ProductCard
-        title="Zapatillas Running"
+        title="Zapatillas Runing"
         price="120"
         description="Las mejores zapatillas"
-        imageUrl="https://picsum.photos/600/400"
+        imageUrl="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       />
 
       <ProductCard
         title="Reloj de Tiempo"
         price="200"
         description="El mejor reloj de Tiempo"
-        imageUrl="https://picsum.photos/600/400?random=2"
+        imageUrl="https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       />
+
+      <ProductCard
+        title="Mouse RGB"
+        price="100"
+       description="El mejor mouse RGB"
+      />
+
     </>
   )
 }
