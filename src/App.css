@@ -4,3 +4,9 @@
   padding: 2rem;
   text-align: center;
 }
+
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
