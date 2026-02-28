@@ -1,0 +1,28 @@
+.promo-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #ffffff;
+  z-index: 100;
+  padding: 0 1rem;
+}
+
+.promo-close {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+button.promo-close {
+  background-color: #000000;
+  border: none;
+  font-size: 20px;
+  padding: 0.5em;
+  color: #ffffff;
+}
