@@ -3,9 +3,9 @@ import './PromoBanner.css'
 
 function PromoBanner({ onClose, defaultSeconds = 5 }) {
   const [visible, setVisible] = useState(true)
-  console.log('~ PromoBanner ~ visible:', visible)
+  console.log('PromoBanner ~ visible:', visible)
   const [seconds, setSeconds] = useState(defaultSeconds)
-  console.log('~ PromoBanner ~ seconds:', seconds)
+  console.log('PromoBanner ~ seconds:', seconds)
 
   useEffect(() => {
     if (!visible) return
@@ -18,7 +18,7 @@ function PromoBanner({ onClose, defaultSeconds = 5 }) {
   }, [visible])
 
   useEffect(() => {
-    if (seconds === 0) {
+    if (seconds == 0) {
       setVisible(false)
     }
   }, [seconds])

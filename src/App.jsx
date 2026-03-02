@@ -33,7 +33,6 @@ function App() {
   return (
     <>
       {showPromo && <PromoBanner onClose={onClose} />}
-
       <div className="card-list">
         {productsData.map((product, index) => (
           <ProductCard

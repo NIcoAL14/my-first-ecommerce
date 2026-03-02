@@ -58,4 +58,9 @@
 
 .card-button.added {
   background-color: #28a745;
+  transition: all 0.3s ease;
+}
+
+.card-button.added:hover {
+  background-color: #28a745;
 }
