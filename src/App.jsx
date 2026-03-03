@@ -10,22 +10,24 @@ function App() {
 
   const productsData = [
     {
-      title: 'Producto 1',
-      price: 29.99,
-      description: 'Descripción del producto 1',
-      imageUrl: 'https://picsum.photos/600/400?random=1',
+      id: '01',
+      title: 'Zapatillas Running',
+      price: 120,
+      description: 'Las mejores zapatillas',
+      imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff',
     },
     {
-      title: 'Producto 2',
-      price: 49.99,
-      description: 'Descripción del producto 2',
-      imageUrl: 'https://picsum.photos/600/400?random=2',
+      id: '02',
+      title: 'Reloj de Tiempo',
+      price: 200,
+      description: 'El mejor reloj de Tiempo',
+      imageUrl: 'https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c',
     },
     {
-      title: 'Producto 3',
-      price: 19.99,
-      description: 'Descripción del producto 3',
-      imageUrl: 'https://picsum.photos/600/400?random=3',
+      id: '03',
+      title: 'Mouse RGB',
+      price: 100,
+      description: 'El mejor mouse RGB',
     },
   ]
 
@@ -50,6 +52,7 @@ function App() {
       <div className="card-list">
         {productsData.map((product, index) => (
           <ProductCard
+            id={product.id}
             key={index}
             title={product.title}
             price={product.price}
