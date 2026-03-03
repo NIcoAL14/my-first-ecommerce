@@ -3,7 +3,7 @@ import './ProductCard.css'
 
 function ProductCard({ id, title, price, description, imageUrl = 'https://picsum.photos/600/400', handleAddToCart }) {
   const [isAdded, setIsAdded] = useState(false)
-  console.log('isAdded', isAdded)
+  // console.log('isAdded', isAdded)  // Comentado para depuración opcional
 
   const handleClick = () => {
     setIsAdded((prev) => !prev)

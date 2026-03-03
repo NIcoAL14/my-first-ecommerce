@@ -37,12 +37,7 @@ function App() {
   }
 
   const handleAddToCart = (isAdded) => {
-    if (isAdded === true) {
-      setCartCount((count) => count + 1)
-    }
-    if (isAdded === false) {
-      setCartCount((count) => count - 1)
-    }
+    setCartCount((count) => (isAdded ? count + 1 : count - 1))
   }
 
   return (
@@ -50,10 +45,6 @@ function App() {
       <Header cartCount={cartCount} />
       {showPromo && <PromoBanner onClose={onClose} />}
 
-      {/* Lista simple */}
-      <ProductList productsData={productsData} handleAddToCart={handleAddToCart} />
-
-      {/* Secciones con Container */}
       <Container title="Productos disponibles">
         <p style={{ textAlign: 'center', marginBottom: '1rem' }}>Estos son los productos que puedes comprar</p>
         <ProductList productsData={productsData} handleAddToCart={handleAddToCart} />
@@ -61,7 +52,7 @@ function App() {
 
       <Container title="Productos sugeridos">
         <p style={{ textAlign: 'center', marginBottom: '1rem' }}>Explora nuestra selección de productos</p>
-        <ProductList productsData={productsData} handleAddToCart={handleAddToCart} />
+        <ProductList productsData={productsData.slice(0, 2)} handleAddToCart={handleAddToCart} />
       </Container>
     </>
   )

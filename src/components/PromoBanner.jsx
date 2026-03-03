@@ -1,37 +1,44 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import './PromoBanner.css'
 
 function PromoBanner({ onClose, defaultSeconds = 5 }) {
   const [visible, setVisible] = useState(true)
-  console.log('~ PromoBanner ~ visible:', visible)
+  // console.log('🎯 ~ PromoBanner ~ visible:', visible)  // Comentado para depuración opcional
+
   const [seconds, setSeconds] = useState(defaultSeconds)
-  console.log('~ PromoBanner ~ seconds:', seconds)
+  // console.log('🎯 ~ PromoBanner ~ seconds:', seconds)  // Comentado para depuración opcional
 
   useEffect(() => {
     if (!visible) return
 
-    const interval = setInterval(() => {
-      setSeconds((actualSeconds) => actualSeconds - 1)
+    const timer = setInterval(() => {
+      setSeconds((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer)
+          setVisible(false)
+          onClose()
+          return 0
+        }
+        return prev - 1
+      })
     }, 1000)
 
-    return () => clearInterval(interval)
-  }, [visible])
+    return () => clearInterval(timer)
+  }, [visible, onClose])
 
-  useEffect(() => {
-    if (seconds === 0) {
-      setVisible(false)
-    }
-  }, [seconds])
-
-  if (visible === false) {
-    return null
-  }
+  if (!visible) return null
 
   return (
     <div className="promo-banner">
-      <span>Oferta por tiempo limitado: {seconds} segundos</span>
-      <button className="promo-close" onClick={() => onClose()}>
-        X
+      <p>🎉 Oferta especial disponible por {seconds} segundos 🎉</p>
+      <button
+        className="promo-close"
+        onClick={() => {
+          setVisible(false)
+          onClose()
+        }}
+      >
+        Cerrar
       </button>
     </div>
   )
