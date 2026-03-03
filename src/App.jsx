@@ -37,7 +37,12 @@ function App() {
   }
 
   const handleAddToCart = (isAdded) => {
-    setCartCount((count) => (isAdded ? count + 1 : count - 1))
+    if (isAdded === true) {
+      setCartCount((count) => count + 1)
+    }
+    if (isAdded === false) {
+      setCartCount((count) => count - 1)
+    }
   }
 
   return (

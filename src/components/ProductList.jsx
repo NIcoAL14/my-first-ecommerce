@@ -1,17 +1,16 @@
 import ProductCard from './ProductCard'
 
-function ProductList({ productsData, handleAddToCart }) {
+function ProductList({ productsData }) {
   return (
     <div className="card-list">
       {productsData.map((product, index) => (
         <ProductCard
-          id={product.id}
           key={index}
+          id={product.id}
           title={product.title}
           price={product.price}
           description={product.description}
           imageUrl={product.imageUrl}
-          handleAddToCart={handleAddToCart}
         />
       ))}
     </div>
