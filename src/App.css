@@ -1,12 +1,16 @@
-#root {
+.card-list {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+  padding-top: calc(var(--header-height, 64px) + var(--promo-height, 48px));
   text-align: center;
-}
-
-.card-list {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  justify-content: center;
+}
+
+:root {
+  --header-height: 64px;
+  --promo-height: 48px;
 }
