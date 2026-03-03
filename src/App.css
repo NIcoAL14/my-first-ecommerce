@@ -2,7 +2,8 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  padding-top: calc(var(--header-height, 64px) + var(--promo-height, 48px));
+  /* Ahora con un extra de 10px */
+  padding-top: calc(var(--header-height, 64px) + var(--promo-height, 48px) + 10px);
   text-align: center;
   display: flex;
   flex-wrap: wrap;
