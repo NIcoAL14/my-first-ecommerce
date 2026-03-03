@@ -3,6 +3,7 @@ import './App.css'
 import ProductCard from './components/ProductCard'
 import PromoBanner from './components/PromoBanner'
 import Header from './components/Header'
+import ProductList from './components/ProductList'
 
 function App() {
   const [cartCount, setCartCount] = useState(0)
@@ -49,19 +50,8 @@ function App() {
       <Header cartCount={cartCount} />
       {showPromo && <PromoBanner onClose={onClose} />}
 
-      <div className="card-list">
-        {productsData.map((product, index) => (
-          <ProductCard
-            id={product.id}
-            key={index}
-            title={product.title}
-            price={product.price}
-            description={product.description}
-            imageUrl={product.imageUrl}
-            handleAddToCart={handleAddToCart}
-          />
-        ))}
-      </div>
+      {/* Ahora delegamos la lista de productos al componente ProductList */}
+      <ProductList productsData={productsData} handleAddToCart={handleAddToCart} />
     </>
   )
 }
