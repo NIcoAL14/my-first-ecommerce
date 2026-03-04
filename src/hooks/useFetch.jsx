@@ -2,26 +2,45 @@ import { useEffect, useState } from 'react'
 
 function useFetch(url) {
   const [data, setData] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
   useEffect(() => {
+    let isMounted = true
+
+    setLoading(true)
+    setError(null)
+
     fetch(url)
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Petición fallida')
+        }
+        return response.json()
+      })
       .then((data) => {
+        if (!isMounted) return
+
         const dataIsArray = Array.isArray(data)
         if (dataIsArray && data.length === 0) {
-          throw new Error('Data is not an array')
+          throw new Error('No se encontraron resultados')
         }
+
         setData(data)
       })
-      .catch((error) => {
-        setError(error)
+      .catch((err) => {
+        if (isMounted) setError(err.message)
       })
-      .finally(() => setIsLoading(false))
+      .finally(() => {
+        if (isMounted) setLoading(false)
+      })
+
+    return () => {
+      isMounted = false
+    }
   }, [url])
 
-  return { data, isLoading, error }
+  return { data, loading, error }
 }
 
 export default useFetch
