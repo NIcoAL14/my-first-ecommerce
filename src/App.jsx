@@ -5,6 +5,7 @@ import Header from './components/Header'
 import ProductList from './components/ProductList'
 import Container from './components/Container'
 import { productsAdapter } from './adapters/products.adapter'
+import Loader from './components/Loader'
 
 function App() {
   const [showPromo, setShowPromo] = useState(true)
@@ -12,6 +13,8 @@ function App() {
   const [productsData, setProductsData] = useState([])
   const [productsSuggestedData, setProductsSuggestedData] = useState([])
   const [productsSnacksData, setProductsSnacksData] = useState([])
+
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     // Productos Disponibles
@@ -22,6 +25,7 @@ function App() {
         setProductsData(productsAdapteds)
       })
       .catch((error) => console.error(error))
+      .finally(() => setIsLoading(false))
 
     // Productos Sugeridos
     fetch('https://api.escuelajs.co/api/v1/products?offset=6&limit=2')
@@ -31,6 +35,7 @@ function App() {
         setProductsSuggestedData(productsAdapteds)
       })
       .catch((error) => console.error(error))
+      .finally(() => setIsLoading(false))
 
     // Productos Snacks
     fetch('https://api.escuelajs.co/api/v1/categories/19/products?offset=0&limit=6')
@@ -40,6 +45,7 @@ function App() {
         setProductsSnacksData(productsAdapteds)
       })
       .catch((error) => console.error(error))
+      .finally(() => setIsLoading(false))
   }, [])
 
   const onClose = () => {
@@ -53,17 +59,17 @@ function App() {
 
       <Container title="Productos disponibles">
         <p style={{ textAlign: 'center', marginBottom: '1rem' }}>Estos son los productos que puedes comprar</p>
-        <ProductList productsData={productsData} />
+        {isLoading ? <Loader /> : <ProductList productsData={productsData} />}
       </Container>
 
       <Container title="Productos sugeridos">
         <p style={{ textAlign: 'center', marginBottom: '1rem' }}>Explora nuestra selección de productos</p>
-        <ProductList productsData={productsSuggestedData} />
+        {isLoading ? <Loader /> : <ProductList productsData={productsSuggestedData} />}
       </Container>
 
       <Container title="Productos snacks">
         <p style={{ textAlign: 'center', marginBottom: '1rem' }}>Explora nuestra selección de snacks</p>
-        <ProductList productsData={productsSnacksData} />
+        {isLoading ? <Loader /> : <ProductList productsData={productsSnacksData} />}
       </Container>
     </>
   )
