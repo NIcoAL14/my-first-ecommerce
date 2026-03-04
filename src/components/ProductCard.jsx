@@ -1,31 +1,23 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { CartContext } from '../context/CartContext'
 import './ProductCard.css'
+import { Link } from 'react-router-dom'
 
 function ProductCard({ id, title, price, description, imageUrl = 'https://picsum.photos/600/400' }) {
   const { handleAddToCart } = useContext(CartContext)
-  const [isAdded, setIsAdded] = useState(false)
-  // console.log('isAdded', isAdded)  // Comentado para depuración opcional
-
-  const handleClick = () => {
-    setIsAdded((prev) => !prev)
-    handleAddToCart(!isAdded)
-  }
 
   return (
-    <div id={`card-${id}`} className="card">
-      <img src={imageUrl} alt={title} className="card-image" />
-
-      <div className="card-content">
+    <div id={`card-${id}`} className="product-card">
+      <Link to={`/product/${id}`}>
+        <img src={imageUrl} alt={title} className="card-image" />
+      </Link>
+      <div className="card-body">
         <h3 className="card-title">{title}</h3>
         <p className="card-text">{description}</p>
-
-        <div className="card-footer">
-          <span className="card-price">${price}</span>
-          <button className={`card-button ${isAdded ? 'added' : ''}`} onClick={handleClick}>
-            {isAdded ? 'Agregado' : 'Agregar'}
-          </button>
-        </div>
+        <p className="card-price">${price}</p>
+        <button className="card-link" onClick={() => handleAddToCart({ id, title, price, imageUrl })}>
+          Añadir al carrito
+        </button>
       </div>
     </div>
   )
