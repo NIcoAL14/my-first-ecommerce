@@ -1,17 +1,25 @@
-.card-list {
+:root {
+  --header-height: 64px;
+  --promo-height: 48px;
+}
+
+#root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  /* Ahora con un extra de 10px */
   padding-top: calc(var(--header-height, 64px) + var(--promo-height, 48px) + 10px);
   text-align: center;
+}
+
+.card-list {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
 }
 
-:root {
-  --header-height: 64px;
-  --promo-height: 48px;
+a {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

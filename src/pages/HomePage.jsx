@@ -1,17 +1,15 @@
 import { useState } from 'react'
-import './App.css'
-import PromoBanner from './components/PromoBanner'
-import Header from './components/Header'
-import ProductList from './components/ProductList'
-import Container from './components/Container'
-import { productsAdapter } from './adapters/products.adapter'
-import Loader from './components/Loader'
-import useFetch from './hooks/useFetch'
-import ErrorMessage from './components/ErrorMessage'
-import { API_ENDPOINTS } from './utils/constants'
-import HomePage from './pages/HomePage'
+import PromoBanner from '../components/PromoBanner'
+import Header from '../components/Header'
+import ProductList from '../components/ProductList'
+import Container from '../components/Container'
+import { productsAdapter } from '../adapters/products.adapter'
+import Loader from '../components/Loader'
+import useFetch from '../hooks/useFetch'
+import ErrorMessage from '../components/ErrorMessage'
+import { API_ENDPOINTS } from '../utils/constants'
 
-function App() {
+function HomePage() {
   const [showPromo, setShowPromo] = useState(true)
 
   const {
@@ -45,9 +43,9 @@ function App() {
       <Header />
       {showPromo && <PromoBanner onClose={onClose} />}
 
-      {errorProducts && <ErrorMessage message="No se pudo cargar los productos" />}
-      {errorSuggested && <ErrorMessage message="No se pudo cargar los productos sugeridos" />}
-      {errorSnacks && <ErrorMessage message="No se pudo cargar los snacks" />}
+      {errorProducts && <ErrorMessage message={'No se pudo cargar los productos'} />}
+      {errorSuggested && <ErrorMessage message={'No se pudo cargar los productos sugeridos'} />}
+      {errorSnacks && <ErrorMessage message={'No se pudo cargar los snacks'} />}
 
       {!errorProducts && (
         <Container title="Productos disponibles">
@@ -71,9 +69,6 @@ function App() {
       )}
     </>
   )
-
-  // Alternativa: renderizar HomePage directamente
-  return <HomePage />
 }
 
-export default App
+export default HomePage
