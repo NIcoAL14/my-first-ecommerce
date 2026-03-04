@@ -15,6 +15,7 @@ function App() {
   const [productsSnacksData, setProductsSnacksData] = useState([])
 
   const [isLoading, setIsLoading] = useState(true)
+  const [isLoadingSnacks, setIsLoadingSnacks] = useState(true)
 
   useEffect(() => {
     // Productos Disponibles
@@ -45,7 +46,7 @@ function App() {
         setProductsSnacksData(productsAdapteds)
       })
       .catch((error) => console.error(error))
-      .finally(() => setIsLoading(false))
+      .finally(() => setIsLoadingSnacks(false))
   }, [])
 
   const onClose = () => {
@@ -69,7 +70,7 @@ function App() {
 
       <Container title="Productos snacks">
         <p style={{ textAlign: 'center', marginBottom: '1rem' }}>Explora nuestra selección de snacks</p>
-        {isLoading ? <Loader /> : <ProductList productsData={productsSnacksData} />}
+        {isLoadingSnacks ? <Loader /> : <ProductList productsData={productsSnacksData} />}
       </Container>
     </>
   )
