@@ -1,26 +1,31 @@
-import { useState } from 'react'
+import { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import { CartContext } from '../context/CartContext'
+import './Header.css'
 
-const Header = ({ cartCount = 0 }) => {
+const Header = () => {
+  const { cartCount } = useContext(CartContext)
+
   return (
     <header className="header">
       <div className="header-container">
         <div className="header-left">
-          <a href="/" className="header-logo">
+          <Link to="/" className="header-logo">
             ShopStore
-          </a>
+          </Link>
         </div>
         <nav className="header-nav">
-          <a href="/" className="nav-link">
+          <Link to="/" className="nav-link">
             Home
-          </a>
-          <a href="/about" className="nav-link">
+          </Link>
+          <Link to="/about" className="nav-link">
             About
-          </a>
-          <a href="/add-product" className="nav-link">
+          </Link>
+          <Link to="/add-product" className="nav-link">
             Add Product
-          </a>
+          </Link>
         </nav>
-        <a href="/cart" className="header-cart">
+        <Link to="/cart" className="header-cart">
           <svg width="36px" height="36px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M6.29977 5H21L19 12H7.37671M20 16H8L6 3H3M9 20C9 20.5523 
@@ -36,7 +41,7 @@ const Header = ({ cartCount = 0 }) => {
             />
           </svg>
           <span className="cart-count">{cartCount}</span>
-        </a>
+        </Link>
       </div>
     </header>
   )
