@@ -4,6 +4,7 @@ import PromoBanner from './components/PromoBanner'
 import Header from './components/Header'
 import ProductList from './components/ProductList'
 import Container from './components/Container'
+import { productsAdapter } from './adapters/products.adapter'
 
 function App() {
   const [showPromo, setShowPromo] = useState(true)
@@ -17,16 +18,7 @@ function App() {
     fetch('https://api.escuelajs.co/api/v1/products?offset=0&limit=6')
       .then((response) => response.json())
       .then((data) => {
-        const productsAdapteds = data.map((product) => {
-          const { id, title, price, description, images } = product
-          return {
-            id,
-            title,
-            price,
-            description,
-            imageUrl: images[0],
-          }
-        })
+        const productsAdapteds = data.map(productsAdapter)
         setProductsData(productsAdapteds)
       })
       .catch((error) => console.error(error))
@@ -35,16 +27,7 @@ function App() {
     fetch('https://api.escuelajs.co/api/v1/products?offset=6&limit=2')
       .then((response) => response.json())
       .then((data) => {
-        const productsAdapteds = data.map((product) => {
-          const { id, title, price, description, images } = product
-          return {
-            id,
-            title,
-            price,
-            description,
-            imageUrl: images[0],
-          }
-        })
+        const productsAdapteds = data.map(productsAdapter)
         setProductsSuggestedData(productsAdapteds)
       })
       .catch((error) => console.error(error))
@@ -53,16 +36,7 @@ function App() {
     fetch('https://api.escuelajs.co/api/v1/categories/19/products?offset=0&limit=6')
       .then((response) => response.json())
       .then((data) => {
-        const productsAdapteds = data.map((product) => {
-          const { id, title, price, description, images } = product
-          return {
-            id,
-            title,
-            price,
-            description,
-            imageUrl: images[0],
-          }
-        })
+        const productsAdapteds = data.map(productsAdapter)
         setProductsSnacksData(productsAdapteds)
       })
       .catch((error) => console.error(error))
